@@ -23,6 +23,7 @@ class App extends Component {
     //this binding is neccesary to make 'this' work in the callback
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggleTodo = this.handleToggleTodo.bind(this);
   }
 
 
@@ -47,6 +48,22 @@ class App extends Component {
     });
   }
 
+  handleToggleTodo(index, value){
+    this.setState({
+      todos: this.state.todos.map((todo, idx) => {
+        if(idx===index){
+          // Object.assign will merge all the properties together left to right.
+          return Object.assign({},todo,{isCompleted: value});
+          /* In this example, Object.assign starts with an empty object, then it 
+          merges in all the data of todo (this in effect is just a copy). 
+          Finally, it merges its update, the isCompleted value. At this point 
+          we will have the updated the todo and, therefore, the state accordingly. */
+        }
+        return todo;
+      })
+    });
+  }
+
   render(){
   return (
     <div className="App">
@@ -62,7 +79,9 @@ class App extends Component {
             // <li key={index}>{todo}</li>
             return <TodoItem 
             key={index}
-            isCompleted={todo.isCompleted}>
+            isCompleted={todo.isCompleted}
+            index={index}
+            onToggleTodo={this.handleToggleTodo}>
               {todo.task}
             </TodoItem>
           }
