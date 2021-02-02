@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoItem from './TodoItem.js'
 
 class App extends Component {
 
@@ -8,9 +9,13 @@ class App extends Component {
     super(props);
 
     this.state={
-      todos: [
-        'Learn React',
-        'Do Laundry'
+      todos: [{
+        task: 'Learn React',
+        isCompleted: true
+      },{
+        task: 'Do Laundry',
+        isCompleted: true
+      }
       ],
       todoToAdd:""
     };
@@ -30,7 +35,10 @@ class App extends Component {
   }
 
   handleClick(event){
-    const nextTodos = this.state.todos.concat(this.state.todoToAdd);
+    const nextTodos = this.state.todos.concat({
+      task: this.state.todoToAdd,
+      isCompleted: false
+    });
     const nextTodoToAdd = "";
     
     this.setState({
@@ -50,8 +58,15 @@ class App extends Component {
       </header>
       <section>
         <ul>
-          {this.state.todos.map((todo,index)=>
-          <li key={index}>{todo}</li>)}
+          {this.state.todos.map((todo,index)=>{
+            // <li key={index}>{todo}</li>
+            return <TodoItem 
+            key={index}
+            isCompleted={todo.isCompleted}>
+              {todo.task}
+            </TodoItem>
+          }
+          )}
         </ul>
 
         <input type="text" 
