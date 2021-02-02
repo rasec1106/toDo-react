@@ -47,6 +47,8 @@ class App extends Component {
         <h2>
           Welcome to my toDo List
         </h2>        
+      </header>
+      <section>
         <ul>
           {this.state.todos.map((todo,index)=>
           <li key={index}>{todo}</li>)}
@@ -74,7 +76,7 @@ class App extends Component {
          * */        
         />
         <button onClick={this.handleClick}>Add Todo</button>
-      </header>
+      </section>
     </div>
   );
   }

@@ -4,22 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const name = 'Cesar Herrera';
-const element=<h1>Hello, {name}</h1>;
+import Teams from './Teams';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <p>
-      This is another line test
-    </p>
-  {element}
   </React.StrictMode>,
   document.getElementById('root')
   /**
    * This is jsx syntax and will be translated to:
    * ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
    */
+);
+
+// I will try to show the teams
+ReactDOM.render(
+  <Teams/>,
+  document.getElementById('mlsRoot')
 );
 
 // If you want to start measuring performance in your app, pass a function
