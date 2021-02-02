@@ -8,15 +8,17 @@ class Teams extends Component{
         super(props);
 
         this.state={
-            teams: data.teams
+            teams: data.teams,
+            teamNames: data.teams.map((team)=>team.name.toLowerCase())
         };
     }
 
     render(){
         let i=0;
+        console.log('object :>> ', this.state.teamNames);
         return(
             <div>
-                {
+                {                    
                     this.state.teams.map((team)=>{
                         return(
                             <div key={i++} className="image__item">
